@@ -42,3 +42,30 @@ function playRound(){
 
     return result
 }
+
+function game(){
+    let counterPlayer = 0
+    let counterComputer = 0
+    let whoWon = ""
+    
+    for (let i = 0; i < 5; i++){
+        whoWon = playRound()
+        console.log(whoWon)
+        if (whoWon.includes("Win")){
+            counterPlayer++
+        }
+        else if(whoWon.includes("Lose")){
+            counterComputer++
+        }
+    }
+
+    if (counterPlayer > counterComputer){
+        console.log("You Win the game!")
+    }
+    else if (counterComputer > counterPlayer){
+        console.log("You lose the game!")
+    }
+    else{
+        console.log("It was a draw!")
+    }
+}
