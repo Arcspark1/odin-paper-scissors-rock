@@ -1,6 +1,11 @@
-const ROCK = "rock"
-const PAPER = "paper"
-const SCISSORS = "scissors"
+const paperButton = document.querySelector('#button-paper');
+const rockButton = document.querySelector('#button-rock');
+const scissorsButton = document.querySelector('#button-scissors');
+const buttons = document.querySelectorAll('.buttonContainer > button');
+
+paperButton.addEventListener('click', function(e){
+    console.log(e);
+});
 
 function computerPlay(){
     let choice = ["rock", "paper", "scissors"]
@@ -8,9 +13,7 @@ function computerPlay(){
 }
 
 function playerSelection(){
-    let choice = prompt("Please enter either: rock, paper or scissors")
-    choice = choice.toLowerCase()
-    return choice
+    if(EventTarget)
 }
 
 function playRound(){
