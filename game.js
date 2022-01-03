@@ -6,6 +6,8 @@ const gameResultText = document.querySelector('#whoWon');
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
 
+const mainGame = document.getElementById("main-game");
+
 paperButton.addEventListener('click', function () { game('paper') });
 rockButton.addEventListener('click', function () { game('rock') });
 scissorsButton.addEventListener('click', function () { game('scissors') });
@@ -64,4 +66,55 @@ function game(text) {
     playerScore.textContent =`Your Score: ${counterPlayer}`;
     computerScore.textContent =`Computer Score: ${counterComputer}`;
     gameResultText.textContent = whoWon;
+
+    if(counterPlayer == 5){
+        document.querySelector('body').style.backgroundColor = 'green';
+        document.getElementById('main-game').style.display = 'none';
+        restartScreen('win');
+        counterComputer = 0;
+        counterPlayer = 0;
+        playerScore.textContent =`Your Score: ${counterPlayer}`;
+        computerScore.textContent =`Computer Score: ${counterComputer}`;
+    
+    } else if(counterComputer == 5){
+        document.querySelector('body').style.backgroundColor = 'red';
+        document.getElementById('main-game').style.display = 'none';
+        restartScreen('lose');
+        counterComputer = 0;
+        counterPlayer = 0;
+        playerScore.textContent =`Your Score: ${counterPlayer}`;
+        computerScore.textContent =`Computer Score: ${counterComputer}`;
+    }
 }
+
+function restartScreen(winOrLose){
+    const restartWrapper = document.createElement('div');
+    restartWrapper.setAttribute('id', 'restartWrapper');
+    const titleText = document.createElement('h1');
+    const restartButton = document.createElement('button');
+    document.querySelector('body').appendChild(restartWrapper);
+    restartWrapper.appendChild(titleText);
+    restartWrapper.appendChild(restartButton);
+
+    restartWrapper.style.cssText = 'display: flex;justify-content: center;' +
+    'align-items:center; gap: 5rem; height: 100vh; flex-direction: column'
+
+    if(winOrLose =='win') {
+        titleText.textContent = 'You Win! You lucky dawg';
+    } else if(winOrLose =='lose') {
+        titleText.textContent = 'You Lost! Unlucky mate';
+    }
+    titleText.style.cssText = 'font-size: 5rem; font-weight:900;text-align:center;'
+    restartButton.textContent = 'Play Again'
+    restartButton.style.cssText = 'font-size: 3.25rem; border-radius: 0.5rem;'
+    restartButton.addEventListener('click', function(){
+        document.getElementById('main-game').style.display = 'flex';
+        let temp = document.getElementById('restartWrapper');
+        while (temp.firstChild){
+            temp.removeChild(temp.lastChild);
+        }
+        temp.remove();
+        document.querySelector('body').style.backgroundColor = '#5aa8ad';
+    })
+}
+

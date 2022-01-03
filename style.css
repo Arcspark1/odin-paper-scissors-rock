@@ -10,13 +10,20 @@ html {
 body{
     background-color: var(--main-background-color);
     padding: 0 8%;
+    height: 100vh;
 }
 * {
     margin: 0;
     padding: 0;
     border: 0;
 }
-
+#main-game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    
+}
 .title{
     display: flex;
     justify-content: center;
@@ -52,6 +59,7 @@ body{
 .tracking > *{
     font-size: 2.5rem;
     flex-basis: 100%;
+    font-weight: bold;
 }
 
 .tracking #playerScore,
@@ -59,5 +67,4 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
