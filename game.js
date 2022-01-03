@@ -1,74 +1,67 @@
 const paperButton = document.querySelector('#button-paper');
 const rockButton = document.querySelector('#button-rock');
 const scissorsButton = document.querySelector('#button-scissors');
-const buttons = document.querySelectorAll('.buttonContainer > button');
 
-paperButton.addEventListener('click', function(e){
-    console.log(e);
-});
+const gameResultText = document.querySelector('#whoWon');
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
 
-function computerPlay(){
+paperButton.addEventListener('click', function () { game('paper') });
+rockButton.addEventListener('click', function () { game('rock') });
+scissorsButton.addEventListener('click', function () { game('scissors') });
+
+let counterPlayer = 0;
+let counterComputer = 0;
+
+function computerPlay() {
     let choice = ["rock", "paper", "scissors"]
-    return choice[Math.floor(Math.random()*choice.length)]
+    return choice[Math.floor(Math.random() * choice.length)]
 }
 
-function playerSelection(){
-    if(EventTarget)
+function playerSelection(text) {
+    return text;
 }
 
-function playRound(){
+function playRound(text) {
     let a = computerPlay()
-    let b = playerSelection()
+    let b = playerSelection(text)
     let result = ""
 
     if (a === b) {
         result = "Draw! Both chose " + a + "!"
     }
-    else if (b === ROCK && a === PAPER){
+    else if (b === 'rock' && a === 'paper') {
         result = "Loser! Paper beats Rock!"
     }
-    else if (b === ROCK && a === SCISSORS){
+    else if (b === 'rock' && a === 'scissors') {
         result = "Winner! Rock beats Scissors!"
     }
-    else if (b === PAPER && a === SCISSORS){
+    else if (b === 'paper' && a === 'scissors') {
         result = "Loser! Scissors beats Paper!"
     }
-    else if (b === PAPER && a === ROCK){
+    else if (b === 'paper' && a === 'rock') {
         result = "Winner! Paper beats Rock!"
     }
-    else if (b === SCISSORS && a === ROCK){
+    else if (b === 'scissors' && a === 'rock') {
         result = "Loser! Rock beats Scissors!"
     }
-    else if (b === SCISSORS && a === PAPER){
+    else if (b === 'scissors' && a === 'paper') {
         result = "Winner! Scissors beats Paper!"
     }
-
-    return result
+    return result;
 }
 
-function game(){
-    let counterPlayer = 0
-    let counterComputer = 0
-    let whoWon = ""
-    
-    for (let i = 0; i < 5; i++){
-        whoWon = playRound()
-        console.log(whoWon)
-        if (whoWon.includes("Win")){
-            counterPlayer++
-        }
-        else if(whoWon.includes("Lose")){
-            counterComputer++
-        }
-    }
+function game(text) {
 
-    if (counterPlayer > counterComputer){
-        console.log("You Win the game!")
+    let whoWon = playRound(text);
+
+    if (whoWon.includes("Win")) {
+        counterPlayer++;
     }
-    else if (counterComputer > counterPlayer){
-        console.log("You lose the game!")
+    else if (whoWon.includes("Lose")) {
+        counterComputer++;
     }
-    else{
-        console.log("It was a draw!")
-    }
+    playerScore.textContent =`Your Score: ${counterPlayer}`;
+    computerScore.textContent =`Computer Score: ${counterComputer}`;
+    gameResultText.textContent = whoWon;
 }
